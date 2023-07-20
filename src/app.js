@@ -48,16 +48,16 @@ app.get('/weather', (req, res) => {
             error: 'You must provide an address'
         });
     } else {
-        geocode(req.query.address, (error, { latitude, longitude, location}) => {
+        geocode(req.query.address, (error, { latitude, longitude } = {}) => {
             if (error) return res.send({ error });
     
-            forecast(latitude, longitude, (error, forecastData) => {
+            forecast(latitude, longitude, (error,  {weatherInfo, locationInfo, coordinates } ) => {
                 if (error) return res.send({ error });
 
                 res.send({
-                    forecast: forecastData,
-                    location,
-                    coordinates: {latitude, longitude},
+                    location: locationInfo,
+                    forecast: weatherInfo,
+                    coordinates: coordinates,
                 })
             })
         })
@@ -81,6 +81,6 @@ app.get('*', (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.clear();
+    // console.clear();
     console.log('Server is up on port 3000.')
 })
