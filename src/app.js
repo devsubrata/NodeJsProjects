@@ -51,13 +51,14 @@ app.get('/weather', (req, res) => {
         geocode(req.query.address, (error, { latitude, longitude } = {}) => {
             if (error) return res.send({ error });
     
-            forecast(latitude, longitude, (error,  {weatherInfo, locationInfo, coordinates } ) => {
+            forecast(latitude, longitude, (error,  {weatherInfo, locationInfo, coordinates, img } ) => {
                 if (error) return res.send({ error });
 
                 res.send({
                     location: locationInfo,
                     forecast: weatherInfo,
                     coordinates: coordinates,
+                    weatherImg: img
                 })
             })
         })

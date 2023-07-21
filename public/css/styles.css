@@ -1,6 +1,6 @@
 body {
     color: #333;
-    font-family: arial;
+    font-family: "Roboto slab", serif;
     max-width: 650px;
     margin: 0 auto;
     padding: 0 16px;
@@ -52,4 +52,10 @@ button {
     background: #777;
     color: #fff;
     padding: 8px;
+}
+
+img {
+    width:200px;
+    border: 2px solid tomato;
+    border-radius: 5px;
 }

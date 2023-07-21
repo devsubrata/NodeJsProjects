@@ -3,6 +3,7 @@ const searchTerm = document.querySelector('input');
 const msgOne = document.querySelector('#message-1');
 const msgTwo = document.querySelector('#message-2');
 const msgThree = document.querySelector('#message-3');
+const weatherImage = document.querySelector('img');
 
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -10,6 +11,7 @@ weatherForm.addEventListener('submit', (e) => {
     msgOne.innerHTML = 'Loading...';
     msgTwo.innerHTML = '';
     msgThree.innerHTML = '';
+    weatherImage.src = '';
 
     const location = searchTerm.value;
     const url = `http://localhost:3000/weather?address=${location}`;
@@ -29,6 +31,7 @@ weatherForm.addEventListener('submit', (e) => {
                 msgOne.innerHTML = `<strong>Location:</strong> ${msg1}`;
                 msgTwo.innerHTML = `<strong>Weather Information:</strong><br><hr>${msg2}`;
                 msgThree.innerHTML = `<strong>Coordinates:</strong><br><hr>${msg3}`;
+                weatherImage.src = data.weatherImg;
             }
         })
 });
@@ -38,4 +41,5 @@ document.getElementById('clear').addEventListener('click', () => {
     msgOne.innerHTML = '';
     msgTwo.innerHTML = '';
     msgThree.innerHTML = '';
+    weatherImage.src = '';
 });
